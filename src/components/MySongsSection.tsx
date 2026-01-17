@@ -30,7 +30,7 @@ const MySongsSection = () => {
     <section id="my-songs" className="py-16 bg-background relative overflow-hidden scroll-mt-24">
       {/* Background effects */}
       <div className="absolute inset-0 bg-background" />
-      
+
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-12">
           <Badge className="bg-gradient-premium text-white border-0 px-6 py-2 mb-4 text-sm font-medium">
@@ -40,16 +40,16 @@ const MySongsSection = () => {
             VerseVault
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto leading-relaxed">
-            Access and manage all the songs you've created with VerseForge AI
+            Access and manage all the songs you've created with Aether AI
           </p>
         </div>
 
         <div className="max-w-6xl mx-auto">
           {/* Create New Song Button */}
           <div className="text-center mb-12 py-8">
-            <Button 
-              variant="create" 
-              size="lg" 
+            <Button
+              variant="create"
+              size="lg"
               className="px-12 py-6 text-xl font-bold rounded-3xl shadow-glow hover:scale-105 transition-all duration-300"
               onClick={() => window.location.href = '/?focus=true'}
             >
@@ -68,8 +68,8 @@ const MySongsSection = () => {
                     <div className="w-12 h-12 bg-gradient-create rounded-xl flex items-center justify-center">
                       <Music className="w-6 h-6 text-white" />
                     </div>
-                    <Badge 
-                      variant={song.isPublic ? "secondary" : "outline"} 
+                    <Badge
+                      variant={song.isPublic ? "secondary" : "outline"}
                       className="text-xs"
                     >
                       {song.isPublic ? "Public" : "Private"}
@@ -96,31 +96,31 @@ const MySongsSection = () => {
 
                   {/* Action Buttons */}
                   <div className="flex items-center gap-2">
-                    <Button 
-                      variant="ghost" 
-                      size="sm" 
+                    <Button
+                      variant="ghost"
+                      size="sm"
                       className="flex-1 bg-white/5 hover:bg-white/10 backdrop-blur-sm rounded-xl"
                     >
                       <Play className="w-4 h-4 mr-2" />
                       Play
                     </Button>
-                    <Button 
-                      variant="ghost" 
-                      size="sm" 
+                    <Button
+                      variant="ghost"
+                      size="sm"
                       className="bg-white/5 hover:bg-white/10 backdrop-blur-sm rounded-xl p-2"
                     >
                       <Heart className="w-4 h-4" />
                     </Button>
-                    <Button 
-                      variant="ghost" 
-                      size="sm" 
+                    <Button
+                      variant="ghost"
+                      size="sm"
                       className="bg-white/5 hover:bg-white/10 backdrop-blur-sm rounded-xl p-2"
                     >
                       <Share2 className="w-4 h-4" />
                     </Button>
-                    <Button 
-                      variant="ghost" 
-                      size="sm" 
+                    <Button
+                      variant="ghost"
+                      size="sm"
                       className="bg-white/5 hover:bg-white/10 backdrop-blur-sm rounded-xl p-2"
                     >
                       <Download className="w-4 h-4" />
@@ -142,9 +142,9 @@ const MySongsSection = () => {
                 <p className="text-muted-foreground text-sm mb-4">
                   Start your musical journey with AI-powered creation
                 </p>
-                <Button 
-                  variant="outline" 
-                  size="sm" 
+                <Button
+                  variant="outline"
+                  size="sm"
                   className="border-white/20 hover:border-white/40 hover:bg-white/5"
                 >
                   Get Started

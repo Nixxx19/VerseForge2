@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Swords, Menu } from "lucide-react";
+import { Swords, Menu, Sparkles, Music, Star } from "lucide-react";
 import { useUser } from '@clerk/clerk-react';
 import SignInDialog from "./SignInDialog";
 import UserProfileDropdown from "./UserProfileDropdown";
@@ -19,7 +19,7 @@ const Header = () => {
       const shouldShowProfile = isSignedIn && !!user;
       setShowUserProfile(shouldShowProfile);
       console.log("Header - Setting showUserProfile to:", shouldShowProfile);
-      
+
       // Clear temporary email when real user data is loaded
       if (user && tempUserEmail) {
         setTempUserEmail(null);
@@ -33,26 +33,23 @@ const Header = () => {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      const headerHeight = 80; // Height of the fixed header (h-20 = 80px)
-      let extraOffset = -25; // Default negative offset to scroll further into the section
-      
-      // Special case for showcase - scroll even further down
+      const headerHeight = 80;
+      let extraOffset = -25;
+
       if (sectionId === 'showcase') {
-        extraOffset = -70; // Much more negative offset for showcase
+        extraOffset = -70;
       }
-      
-      // Special case for reviews - scroll even further down
+
       if (sectionId === 'testimonials') {
-        extraOffset = -36; // Much more negative offset for testimonials
+        extraOffset = -36;
       }
-      
-      // Special case for my-songs - scroll even further down
+
       if (sectionId === 'my-songs') {
-        extraOffset = -40; // Much more negative offset for my-songs
+        extraOffset = -40;
       }
-      
+
       const elementPosition = element.offsetTop - headerHeight - extraOffset;
-      
+
       window.scrollTo({
         top: elementPosition,
         behavior: 'smooth'
@@ -65,7 +62,7 @@ const Header = () => {
       top: 0,
       behavior: 'smooth'
     });
-    
+
     // Dispatch custom event to trigger autofocus on prompt bar
     setTimeout(() => {
       window.dispatchEvent(new CustomEvent('focusPromptBar'));
@@ -75,9 +72,9 @@ const Header = () => {
   const scrollToCreate = () => {
     const element = document.getElementById('create');
     if (element) {
-      const headerHeight = 10; // Height of the fixed header
+      const headerHeight = 10;
       const elementPosition = element.offsetTop - headerHeight;
-      
+
       window.scrollTo({
         top: elementPosition,
         behavior: 'smooth'
@@ -89,7 +86,6 @@ const Header = () => {
   const handleSignInDialogClose = () => {
     console.log("Header - Sign in dialog closed");
     setIsSignInDialogOpen(false);
-    // Force a small delay to ensure Clerk state is updated
     setTimeout(() => {
       console.log("Header - Checking auth state after dialog close:", { isSignedIn, isLoaded });
     }, 100);
@@ -99,152 +95,151 @@ const Header = () => {
   const handleAuthSuccess = (email?: string) => {
     console.log("Header - Authentication attempt started, showing user profile immediately");
     setIsSignInDialogOpen(false);
-    // Set temporary user email for immediate visual feedback
     if (email) {
       setTempUserEmail(email);
     }
-    // Immediately show user profile when OTP is submitted
     setShowUserProfile(true);
-    // Force immediate state check
     setTimeout(() => {
       console.log("Header - Auth success - checking state:", { isSignedIn, isLoaded, hasUser: !!user });
     }, 50);
   };
 
-  return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-xl border-b border-white/10">
-      <div className="container mx-auto px-4 h-20 flex items-center justify-between">
-        <div className="flex items-center gap-8">
-          <div className="flex items-center gap-3 cursor-pointer" onClick={scrollToTop}>
-            <div className="w-10 h-10 bg-gradient-premium rounded-xl flex items-center justify-center">
-              <Swords className="w-6 h-6 text-white" />
-            </div>
-            <span className="font-display text-2xl font-bold text-foreground">
-              VerseForge
-            </span>
-          </div>
-          
-          <nav className="hidden lg:flex items-center gap-8">
-            <button 
-              onClick={() => scrollToSection('features')} 
-              className="text-foreground font-medium cursor-pointer px-3 py-1 relative transition-all duration-300 focus:outline-none focus:ring-0 focus-visible:ring-0"
-              onMouseEnter={(e) => {
-                const button = e.currentTarget;
-                const underline = button.querySelector('.underline') as HTMLElement;
-                if (underline) {
-                  underline.style.width = '80%';
-                  underline.style.left = '50%';
-                  underline.style.boxShadow = '0 4px 12px -2px rgba(102, 126, 234, 0.3)';
-                }
-              }}
-              onMouseLeave={(e) => {
-                const button = e.currentTarget;
-                const underline = button.querySelector('.underline') as HTMLElement;
-                if (underline) {
-                  underline.style.width = '0%';
-                  underline.style.left = '50%';
-                  underline.style.boxShadow = '';
-                }
-              }}
-            >
-              Features
-              <div className="underline absolute bottom-1 left-1/2 h-0.5 bg-gradient-to-r from-[#667eea] to-[#764ba2] transition-all duration-300 ease-out" style={{ width: '0%', transform: 'translateX(-50%)' }}></div>
-            </button>
-            <button 
-              onClick={() => scrollToSection('showcase')} 
-              className="text-foreground font-medium cursor-pointer px-3 py-1 relative transition-all duration-300 focus:outline-none focus:ring-0 focus-visible:ring-0"
-              onMouseEnter={(e) => {
-                const button = e.currentTarget;
-                const underline = button.querySelector('.underline') as HTMLElement;
-                if (underline) {
-                  underline.style.width = '82%';
-                  underline.style.left = '50%';
-                  underline.style.boxShadow = '0 4px 12px -2px rgba(102, 126, 234, 0.3)';
-                }
-              }}
-              onMouseLeave={(e) => {
-                const button = e.currentTarget;
-                const underline = button.querySelector('.underline') as HTMLElement;
-                if (underline) {
-                  underline.style.width = '0%';
-                  underline.style.left = '50%';
-                  underline.style.boxShadow = '';
-                }
-              }}
-            >
-              Showcase
-              <div className="underline absolute bottom-1 left-1/2 h-0.5 bg-gradient-to-r from-[#667eea] to-[#764ba2] transition-all duration-300 ease-out" style={{ width: '0%', transform: 'translateX(-50%)' }}></div>
-            </button>
-            <button 
-              onClick={() => scrollToSection('testimonials')} 
-              className="text-foreground font-medium cursor-pointer px-3 py-1 relative transition-all duration-300 focus:outline-none focus:ring-0 focus-visible:ring-0"
-              onMouseEnter={(e) => {
-                const button = e.currentTarget;
-                const underline = button.querySelector('.underline') as HTMLElement;
-                if (underline) {
-                  underline.style.width = '80%';
-                  underline.style.left = '50%';
-                  underline.style.boxShadow = '0 4px 12px -2px rgba(102, 126, 234, 0.3)';
-                }
-              }}
-              onMouseLeave={(e) => {
-                const button = e.currentTarget;
-                const underline = button.querySelector('.underline') as HTMLElement;
-                if (underline) {
-                  underline.style.width = '0%';
-                  underline.style.left = '50%';
-                  underline.style.boxShadow = '';
-                }
-              }}
-            >
-              Reviews
-              <div className="underline absolute bottom-1 left-1/2 h-0.5 bg-gradient-to-r from-[#667eea] to-[#764ba2] transition-all duration-300 ease-out" style={{ width: '0%', transform: 'translateX(-50%)' }}></div>
-            </button>
+  const navigate = (path: string) => {
+    if (path === '/') {
+      scrollToTop();
+    }
+  };
 
-          </nav>
+  // Theme Toggle Logic
+  const [theme, setTheme] = useState<'dark' | 'light'>('dark');
+
+  useEffect(() => {
+    const storedTheme = localStorage.getItem('theme');
+    if (storedTheme === 'dark' || (!storedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      setTheme('dark');
+      document.documentElement.classList.add('dark');
+    } else {
+      setTheme('light');
+      document.documentElement.classList.remove('dark');
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    const newTheme = theme === 'dark' ? 'light' : 'dark';
+    setTheme(newTheme);
+    localStorage.setItem('theme', newTheme);
+    if (newTheme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  };
+
+  return (
+    <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+      <div className="container mx-auto px-6 h-20 flex items-center justify-between relative">
+        {/* Logo */}
+        <div
+          className="flex items-center gap-3 cursor-pointer group"
+          onClick={() => navigate('/')}
+        >
+          <div className="relative">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-white/10 blur-lg rounded-full" />
+            <img
+              src="/aether-logo.png"
+              alt="Aether Logo"
+              className="relative w-8 h-8 object-contain group-hover:scale-105 transition-transform duration-300"
+            />
+          </div>
+          <span className="text-2xl font-bold text-foreground font-display tracking-tight group-hover:tracking-wide transition-all duration-300">
+            Aether
+          </span>
         </div>
-        
+
+        {/* Centered Capsule Navigation */}
+        <nav className="hidden md:flex items-center gap-2 absolute left-1/2 -translate-x-1/2 backdrop-blur-md border border-foreground/10 rounded-full p-1.5">
+          <button
+            onClick={() => scrollToSection('features')}
+            className="group flex items-center gap-2 px-3 py-2 rounded-full hover:bg-foreground/10 transition-all duration-300"
+          >
+            <Sparkles className="w-4 h-4 text-foreground/80 group-hover:text-primary transition-colors" />
+            <span className="max-w-0 overflow-hidden group-hover:max-w-xs text-sm font-medium text-foreground/90 whitespace-nowrap transition-all duration-300 ease-in-out">
+              Features
+            </span>
+          </button>
+
+          <div className="w-px h-4 bg-foreground/10" />
+
+          <button
+            onClick={() => scrollToSection('showcase')}
+            className="group flex items-center gap-2 px-3 py-2 rounded-full hover:bg-foreground/10 transition-all duration-300"
+          >
+            <Music className="w-4 h-4 text-foreground/80 group-hover:text-primary transition-colors" />
+            <span className="max-w-0 overflow-hidden group-hover:max-w-xs text-sm font-medium text-foreground/90 whitespace-nowrap transition-all duration-300 ease-in-out">
+              Showcase
+            </span>
+          </button>
+
+          <div className="w-px h-4 bg-foreground/10" />
+
+          <button
+            onClick={() => scrollToSection('testimonials')}
+            className="group flex items-center gap-2 px-3 py-2 rounded-full hover:bg-foreground/10 transition-all duration-300"
+          >
+            <Star className="w-4 h-4 text-foreground/80 group-hover:text-primary transition-colors" />
+            <span className="max-w-0 overflow-hidden group-hover:max-w-xs text-sm font-medium text-foreground/90 whitespace-nowrap transition-all duration-300 ease-in-out">
+              Reviews
+            </span>
+          </button>
+        </nav>
+
         <div className="flex items-center gap-4">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={toggleTheme}
+            className="rounded-full w-10 h-10 border border-border/50 bg-background/50 backdrop-blur-sm hover:bg-accent/10 transition-all duration-300"
+          >
+            {theme === 'dark' ? (
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-yellow-400">
+                <circle cx="12" cy="12" r="4"></circle>
+                <path d="M12 2v2"></path>
+                <path d="M12 20v2"></path>
+                <path d="m4.93 4.93 1.41 1.41"></path>
+                <path d="m17.66 17.66 1.41 1.41"></path>
+                <path d="M2 12h2"></path>
+                <path d="M20 12h2"></path>
+                <path d="m6.34 17.66-1.41 1.41"></path>
+                <path d="m19.07 4.93-1.41 1.41"></path>
+              </svg>
+            ) : (
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-indigo-600">
+                <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+              </svg>
+            )}
+            <span className="sr-only">Toggle theme</span>
+          </Button>
+
           {shouldShowUserProfile ? (
             <UserProfileDropdown tempEmail={tempUserEmail} />
           ) : (
-            <Button 
-              variant="ghost" 
-              className="hidden sm:inline-flex text-white font-medium px-3.5 h-11 border border-white/10 backdrop-blur-sm transition-all duration-300 rounded-md focus:outline-none focus:ring-0 focus-visible:ring-0"
+            <Button
+              variant="ghost"
+              className="hidden sm:inline-flex text-black dark:text-white font-medium px-3.5 h-11 border border-border/50 backdrop-blur-sm transition-all duration-300 rounded-md focus:outline-none focus:ring-0 focus-visible:ring-0 hover:border-[#667eea] hover:bg-transparent hover:text-black dark:hover:text-white"
               onClick={() => setIsSignInDialogOpen(true)}
-              onMouseEnter={(e) => {
-                const button = e.currentTarget;
-                button.style.borderColor = '#667eea';
-                button.style.background = 'transparent';
-              }}
-              onMouseLeave={(e) => {
-                const button = e.currentTarget;
-                button.style.borderColor = 'rgba(255, 255, 255, 0.1)';
-                button.style.background = 'transparent';
-              }}
             >
               Sign In
             </Button>
           )}
-          <Button 
-            variant="ghost" 
-            className="font-semibold px-3.5 h-11 border border-white/10 backdrop-blur-sm transition-all duration-300 rounded-md focus:outline-none focus:ring-0 focus-visible:ring-0 text-white" 
+          <Button
+            variant="ghost"
+            className="font-semibold px-3.5 h-11 border border-border/50 backdrop-blur-sm transition-all duration-300 rounded-md focus:outline-none focus:ring-0 focus-visible:ring-0 text-black dark:text-white hover:border-[#667eea] hover:bg-transparent hover:text-black dark:hover:text-white"
             onClick={() => {
               if (isSignedIn) {
                 scrollToTop();
               } else {
                 setIsSignInDialogOpen(true);
               }
-            }}
-            onMouseEnter={(e) => {
-              const button = e.currentTarget;
-              button.style.borderColor = '#667eea';
-              button.style.background = 'transparent';
-            }}
-            onMouseLeave={(e) => {
-              const button = e.currentTarget;
-              button.style.borderColor = 'rgba(255, 255, 255, 0.1)';
-              button.style.background = 'transparent';
             }}
           >
             Start Creating
@@ -254,13 +249,13 @@ const Header = () => {
           </Button>
         </div>
 
-        <SignInDialog 
+        <SignInDialog
           isOpen={isSignInDialogOpen}
           onClose={handleSignInDialogClose}
           onAuthSuccess={handleAuthSuccess}
         />
       </div>
-    </header>
+    </header >
   );
 };
 

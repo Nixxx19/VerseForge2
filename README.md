@@ -1,8 +1,8 @@
-# 🎵 VerseForge - AI Music Generation Platform
+# 🎵 Aether - AI Music Generation Platform
 
 <div align="center">
 
-![VerseForge Logo](public/swords.svg)
+![Aether Logo](public/swords.svg)
 
 **The world's most advanced AI music creation platform. Create professional songs, beats, and compositions with cutting-edge artificial intelligence.**
 
@@ -16,7 +16,7 @@
 
 ## 🌟 Overview
 
-VerseForge is a cutting-edge AI-powered music generation platform that transforms your creative ideas into professional-quality songs. Using advanced artificial intelligence, it generates original lyrics and converts them into high-quality audio tracks with customizable parameters.
+Aether is a cutting-edge AI-powered music generation platform that transforms your creative ideas into professional-quality songs. Using advanced artificial intelligence, it generates original lyrics and converts them into high-quality audio tracks with customizable parameters.
 
 ### ✨ Key Features
 
@@ -44,7 +44,7 @@ VerseForge is a cutting-edge AI-powered music generation platform that transform
 ```bash
 # Clone the repository
 git clone https://github.com/Nixxx19/verseforge.git
-cd verseforge
+cd aether
 ```
 
 #### Step 2: Install Dependencies
@@ -72,7 +72,7 @@ npm run dev
 
 ## 🔬 How It Works
 
-VerseForge uses a sophisticated multi-stage AI pipeline to transform your creative ideas into professional-quality music. Here's the technical breakdown of our advanced system:
+Aether uses a sophisticated multi-stage AI pipeline to transform your creative ideas into professional-quality music. Here's the technical breakdown of our advanced system:
 
 ### Stage 1: Custom LSTM Preprocessing
 Before generating lyrics, we run your input through our custom LSTM (Long Short-Term Memory) neural network that has been specifically trained on music data:
@@ -188,7 +188,7 @@ backend/
 
 ## 🎨 Design System
 
-VerseForge features a sophisticated design system with:
+Aether features a sophisticated design system with:
 
 ### Color Palette
 - **Primary**: Gradient blues and purples

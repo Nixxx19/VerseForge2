@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "🚀 Starting VerseForge with Auto-Backend..."
+echo "🚀 Starting Aether with Auto-Backend..."
 
 # Function to check if backend is running
 check_backend() {

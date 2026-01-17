@@ -8,14 +8,14 @@ const TestimonialsSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [slideDirection, setSlideDirection] = useState('right'); // 'left' or 'right'
   const [timerKey, setTimerKey] = useState(0); // Key to reset timer
-  
+
   const testimonials = [
     {
       name: "Arnav Deora",
       role: "Music Composer",
       company: "Thapar University",
       avatar: "Reviews/1REVIEW.jpg.jpg",
-      content: "VerseForge has revolutionized my workflow. The AI understands musical nuance in ways I never thought possible.",
+      content: "Aether has revolutionized my workflow. The AI understands musical nuance in ways I never thought possible.",
       rating: 5,
       verified: true
     },
@@ -25,7 +25,7 @@ const TestimonialsSection = () => {
       role: "Groover",
       company: "Thapar University",
       avatar: "Reviews/3REVIEW.jpg.jpg",
-      content: "As an indie artist, VerseForge levels the playing field. My latest album, created entirely with AI assistance, hit #1 on indie charts.",
+      content: "As an indie artist, Aether levels the playing field. My latest album, created entirely with AI assistance.",
       rating: 4,
       verified: true
     },
@@ -34,16 +34,16 @@ const TestimonialsSection = () => {
       role: "Vibe Curator",
       company: "Thapar University",
       avatar: "Reviews/4REVIEW.jpg.jpg",
-      content: "The technical precision and creative possibilities are astounding. I'm integrating VerseForge into our curriculum.",
+      content: "The technical precision and creative possibilities are astounding. I'm integrating Aether into our curriculum.",
       rating: 4,
       verified: true
     },
     {
-      name: "Dhruv Sharma",
+      name: "Meharpreet Singh",
       role: "Beat Boxer",
       company: "Punjab Engineering College",
       avatar: "Reviews/2REVIEW.jpg.jpg",
-      content: "From concept to final mix, VerseForge delivers professional-grade results. I've used it for three major film scores this year.",
+      content: "From concept to final mix, Aether delivers professional-grade results. I've used it for three major film scores this year.",
       rating: 4,
       verified: true
     },
@@ -70,7 +70,7 @@ const TestimonialsSection = () => {
       role: "Electronic Music Producer",
       company: "University of Queensland",
       avatar: "Reviews/7REVIEW.jpg.jpg",
-      content: "VerseForge has transformed my creative process. The AI comprehends musical subtleties with remarkable precision.",
+      content: "Aether has transformed my creative process. The AI comprehends musical subtleties with remarkable precision.",
       rating: 5,
       verified: true
     },
@@ -118,7 +118,7 @@ const TestimonialsSection = () => {
     } else {
       setCurrentSlide((prev) => (prev - 1 + Math.ceil(testimonials.length / 3)) % Math.ceil(testimonials.length / 3));
     }
-    
+
     // Reset the auto-slide timer
     setTimerKey(prev => prev + 1);
   };
@@ -126,7 +126,7 @@ const TestimonialsSection = () => {
   return (
     <section id="testimonials" className="py-16 bg-background relative overflow-hidden scroll-mt-40">
       {/* Background effects - removed to fix purple spots */}
-      
+
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-12">
           <Badge className="bg-gradient-premium text-white border-0 px-6 py-2 mb-6 text-sm font-medium">
@@ -140,7 +140,7 @@ const TestimonialsSection = () => {
             </span>
           </h2>
           <p className="text-muted-foreground text-xl max-w-2xl mx-auto leading-relaxed">
-            Join thousands of musicians, producers, and creators who trust VerseForge for their musical journey
+            Join thousands of musicians, producers, and creators who trust Aether for their musical journey
           </p>
         </div>
 
@@ -166,11 +166,10 @@ const TestimonialsSection = () => {
           </button>
 
           {getCurrentTestimonials().map((testimonial, index) => (
-            <Card 
+            <Card
               key={`${currentSlide}-${index}`}
-              className={`group transition-all duration-1000 ease-out hover:scale-105 hover:shadow-glass-hover hover:bg-glass-hover animate-in fade-in-0 h-[273px] ${
-                slideDirection === 'left' ? 'slide-in-from-right-8' : 'slide-in-from-left-8'
-              }`}
+              className={`group transition-all duration-1000 ease-out hover:scale-105 hover:shadow-glass-hover hover:bg-glass-hover animate-in fade-in-0 h-[273px] ${slideDirection === 'left' ? 'slide-in-from-right-8' : 'slide-in-from-left-8'
+                }`}
               style={{ animationDelay: `${index * 150}ms` }}
             >
               <CardContent className="p-6 h-full flex flex-col">
@@ -195,7 +194,7 @@ const TestimonialsSection = () => {
                       {testimonial.name.split(' ').map(n => n[0]).join('')}
                     </AvatarFallback>
                   </Avatar>
-                  
+
                   <div className="flex-1">
                     <div className="flex items-center gap-2">
                       <h4 className="font-semibold text-foreground">
@@ -226,9 +225,8 @@ const TestimonialsSection = () => {
             <button
               key={index}
               onClick={() => setCurrentSlide(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                index === currentSlide ? 'bg-primary' : 'bg-muted-foreground/30'
-              }`}
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentSlide ? 'bg-primary' : 'bg-muted-foreground/30'
+                }`}
             />
           ))}
         </div>

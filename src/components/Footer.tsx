@@ -5,9 +5,7 @@ const Footer = () => {
 
         {/* Copyright */}
         <div className="text-center">
-          <p className="text-muted-foreground text-sm">
-            © 2025 VerseForge
-          </p>
+          <p className="text-gray-400">&copy; 2024 Aether. All rights reserved.</p>
         </div>
       </div>
     </footer>
